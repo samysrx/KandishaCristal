@@ -1,0 +1,36 @@
+/* Prueba de zellige para la versión de cristal: azulejos de colores que aparecen bajo el ratón,
+   detrás de la celosía del fondo. Mismo azulejo de estrella de ocho puntas que la celosía de
+   fondo.css, en rojo Kandisha, azul cobalto, blanco cal y carbón. Para quitarlo basta con retirar este archivo, js/zellige.js y sus enlaces. */
+
+:root {
+  --zellige: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath fill='%231d4e89' d='M34 34h52v52H34z'/%3E%3Cpath fill='%232f6db3' d='M60 23.2 96.8 60 60 96.8 23.2 60z'/%3E%3Cpath fill='%23f4efe6' d='M60 44 76 60 60 76 44 60z'/%3E%3Cpath fill='%23c4161c' d='M0 0h14L0 14zM120 0v14L106 0zM120 120h-14l14-14zM0 120v-14l14 14z'/%3E%3Cpath fill='%2326282c' d='M52 0h16l-8 8zM120 52v16l-8-8zM52 120h16l-8-8zM0 52v16l8-8z'/%3E%3Cg fill='none' stroke='%23f4efe6' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M34 34h52v52H34z'/%3E%3Cpath d='M60 23.2 96.8 60 60 96.8 23.2 60z'/%3E%3Cpath d='M60 44 76 60 60 76 44 60z'/%3E%3Cpath d='M60 23.2V0M96.8 60H120M60 96.8V120M23.2 60H0'/%3E%3Cpath d='M14 0 0 14M106 0l14 14M120 106l-14 14M0 106l14 14'/%3E%3Cpath d='M34 34 7 7M86 34l27-27M86 86l27 27M34 86 7 113'/%3E%3C/g%3E%3C/svg%3E");
+  --zellige-luz: 0.62;
+}
+:root[data-tema="dark"] {
+  --zellige-luz: 0.5;
+}
+
+/* ---------- Azulejos bajo el ratón ----------
+   Un cuadrado que sigue al puntero (js/zellige.js) con los azulejos alineados con la celosía.
+   Está entre las luces y las líneas de la celosía: el color queda debajo de las juntas. */
+.zellige-luz {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 460px;
+  height: 460px;
+  pointer-events: none;
+  background-image: var(--zellige);
+  background-size: 132px 132px;
+  -webkit-mask-image: radial-gradient(closest-side, #000 25%, rgba(0, 0, 0, 0.45) 60%, transparent);
+  mask-image: radial-gradient(closest-side, #000 25%, rgba(0, 0, 0, 0.45) 60%, transparent);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  will-change: transform;
+}
+.zellige-luz.visible { opacity: var(--zellige-luz); }
+@media (max-width: 38rem) {
+  .zellige-luz { background-size: 104px 104px; }
+}
+html.acc-contraste .zellige-luz { display: none; }

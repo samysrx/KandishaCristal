@@ -1,0 +1,71 @@
+/* Prueba de fondo para la versión de cristal: celosía marroquí detrás del cristal, luces que se
+   mueven despacio y un grano fino de papel. Se carga después de cristal.css; para quitarlo basta
+   con retirar este archivo y su <link>. */
+
+:root {
+  --celosia: rgba(27, 28, 30, 0.13);
+}
+:root[data-tema="dark"] {
+  --celosia: rgba(255, 255, 255, 0.075);
+}
+
+/* Las secciones dejan de tener su propio punteado: la celosía se ve seguida por toda la página */
+.malla { background-image: none; }
+
+/* ---------- Celosía (zellige de estrella de ocho puntas) ----------
+   Va fija detrás de todo, como si se mirara a través de una ventana con celosía. Se aclara en el
+   centro, donde se lee, y se marca más hacia los bordes. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--celosia);
+  -webkit-mask-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120' fill='none' stroke='%23000' stroke-width='1.1' stroke-linejoin='round'%3E%3Cpath d='M34 34h52v52H34z'/%3E%3Cpath d='M60 23.2 96.8 60 60 96.8 23.2 60z'/%3E%3Cpath d='M60 44 76 60 60 76 44 60z'/%3E%3Cpath d='M60 23.2V0M96.8 60H120M60 96.8V120M23.2 60H0'/%3E%3Cpath d='M14 0 0 14M106 0l14 14M120 106l-14 14M0 106l14 14'/%3E%3Cpath d='M34 34 7 7M86 34l27-27M86 86l27 27M34 86 7 113'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(0, 0, 0, 0.35), #000 80%);
+  mask-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120' fill='none' stroke='%23000' stroke-width='1.1' stroke-linejoin='round'%3E%3Cpath d='M34 34h52v52H34z'/%3E%3Cpath d='M60 23.2 96.8 60 60 96.8 23.2 60z'/%3E%3Cpath d='M60 44 76 60 60 76 44 60z'/%3E%3Cpath d='M60 23.2V0M96.8 60H120M60 96.8V120M23.2 60H0'/%3E%3Cpath d='M14 0 0 14M106 0l14 14M120 106l-14 14M0 106l14 14'/%3E%3Cpath d='M34 34 7 7M86 34l27-27M86 86l27 27M34 86 7 113'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(0, 0, 0, 0.35), #000 80%);
+  -webkit-mask-size: 132px 132px, 100% 100%;
+  mask-size: 132px 132px, 100% 100%;
+  -webkit-mask-position: center top, center;
+  mask-position: center top, center;
+  -webkit-mask-repeat: repeat, no-repeat;
+  mask-repeat: repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+@media (max-width: 38rem) {
+  body::after { -webkit-mask-size: 104px 104px, 100% 100%; mask-size: 104px 104px, 100% 100%; }
+}
+
+/* ---------- Luces que se mueven despacio y grano de papel ----------
+   La capa de luces de cristal.css se agranda para poder desplazarse sin dejar bordes, y lleva
+   encima un grano casi invisible que quita el aspecto digital a los degradados. */
+body::before {
+  inset: -15%;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E") repeat,
+    radial-gradient(48vw 44vh at 18% 20%, var(--luz-1), transparent 70%),
+    radial-gradient(44vw 48vh at 86% 40%, var(--luz-2), transparent 70%),
+    radial-gradient(40vw 40vh at 36% 88%, var(--luz-1), transparent 70%),
+    radial-gradient(34vw 34vh at 66% 68%, var(--luz-3), transparent 70%);
+  background-size: 180px 180px, auto, auto, auto, auto;
+}
+/* La deriva solo en pantallas grandes: en el móvil, mover el fondo obliga a recalcular todo el
+   cristal en cada fotograma y gasta batería */
+@media (min-width: 60.001rem) {
+  html.mov body::before { animation: luces-deriva 48s ease-in-out infinite alternate; }
+}
+@keyframes luces-deriva {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  33% { transform: translate3d(4%, -3%, 0) rotate(3deg) scale(1.04); }
+  66% { transform: translate3d(-3%, 4%, 0) rotate(-2deg) scale(1.02); }
+  100% { transform: translate3d(2%, 2%, 0) rotate(1deg) scale(1.06); }
+}
+
+/* Alto contraste: fondo liso, sin dibujo ni grano */
+html.acc-contraste body::after { display: none; }
+html.acc-contraste body::before { background: none; animation: none; }
