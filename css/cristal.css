@@ -211,8 +211,24 @@ html.acc-contraste {
 .malla, .seccion-blanca { background-color: transparent; }
 .seccion-blanca .formulario, .cookies-config { background: var(--cristal-fuerte); }
 .pie { background: rgba(14, 14, 16, 0.45); }
-/* En modo claro la losa casi transparente quedaba gris y el texto del pie no se leía */
+/* En modo claro el pie es una losa de cristal claro con texto oscuro, como el resto de paneles.
+   Con «Alto contraste» se queda la losa oscura de siempre. */
 :root:not([data-tema="dark"]) .pie { background: rgba(16, 17, 20, 0.88); }
+:root:not([data-tema="dark"]):not(.acc-contraste) .pie {
+  color-scheme: light;
+  color: var(--tinta-suave);
+  background: var(--cristal-fuerte);
+  border-color: var(--cristal-borde);
+  box-shadow: var(--cristal-brillo), var(--cristal-sombra);
+}
+:root:not([data-tema="dark"]):not(.acc-contraste) .pie .pie-titulo,
+:root:not([data-tema="dark"]):not(.acc-contraste) .pie a:hover,
+:root:not([data-tema="dark"]):not(.acc-contraste) .pie-cookies:hover { color: var(--tinta); }
+:root:not([data-tema="dark"]):not(.acc-contraste) .pie .logo-claro { clip-path: none; }
+:root:not([data-tema="dark"]):not(.acc-contraste) .pie .logo-letras { display: none; }
+:root:not([data-tema="dark"]):not(.acc-contraste) .pie-legal { color: var(--tinta-suave); border-top-color: color-mix(in srgb, var(--tinta) 14%, transparent); }
+:root:not([data-tema="dark"]):not(.acc-contraste) .pie-columnas > div > a.pie-red { color: var(--tinta); border-color: color-mix(in srgb, var(--tinta) 25%, transparent); }
+:root:not([data-tema="dark"]):not(.acc-contraste) .pie-columnas > div > a.pie-red:hover { background: var(--tinta); color: #fff; }
 
 /* ---------- Portada con vídeo: titular arriba y la película entera debajo ---------- */
 
