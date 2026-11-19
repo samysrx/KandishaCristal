@@ -111,10 +111,6 @@
         <input id="f-nombre" name="nombre" type="text" autocomplete="name" required>
       </div>
       <div class="campo">
-        <label for="f-email" data-i18n="form.email">Correo electrónico</label>
-        <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email">
-      </div>
-      <div class="campo">
         <label for="f-tel" data-i18n="form.tel">Teléfono</label>
         <input id="f-tel" name="telefono" type="tel" autocomplete="tel">
       </div>
@@ -133,17 +129,9 @@
         <label for="f-msg" data-i18n="form.msg">Cuéntenos el proyecto</label>
         <textarea id="f-msg" name="mensaje" rows="5" required></textarea>
       </div>
-      <p class="form-error" id="form-error" role="alert" hidden data-i18n="form.error">Escriba su nombre, un correo o un teléfono para responderle y unas líneas sobre el proyecto.</p>
-      <!-- Campo trampa para robots: las personas no lo ven ni lo rellenan -->
-      <input class="trampa" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="boton boton-sello" type="submit" id="form-enviar" data-i18n="form.send">Enviar mensaje</button>
-      <p class="form-estado" id="form-estado" role="status" hidden></p>
-      <p class="form-nota" data-i18n="form.note">Su mensaje llega directamente al estudio y le responderemos lo antes posible.</p>
-      <div hidden>
-        <span data-i18n="form.sending">Enviando…</span>
-        <span data-i18n="form.ok">Mensaje enviado. Gracias, le responderemos muy pronto.</span>
-        <span data-i18n="form.fail">No se ha podido enviar. Inténtelo de nuevo o escríbanos a kandisha.pro.art@gmail.com.</span>
-      </div>
+      <p class="form-error" id="form-error" role="alert" hidden data-i18n="form.error">Escriba su nombre y unas líneas sobre el proyecto.</p>
+      <button class="boton boton-sello" type="submit" data-i18n="form.send">Abrir el correo con mi mensaje</button>
+      <p class="form-nota" data-i18n="form.note">Se abrirá su programa de correo con el mensaje listo para enviar.</p>
     </form>
   </section>
 
