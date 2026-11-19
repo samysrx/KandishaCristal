@@ -710,7 +710,7 @@ html.mov .perdido-cero { animation: perdido-flota 4.5s ease-in-out infinite; }
 }
 html.vt .cabecera { view-transition-name: cabecera; }
 html.vt .dock { view-transition-name: dock; }
-html.vt .acc { view-transition-name: accesibilidad; }
+html.vt .acc-boton { view-transition-name: accesibilidad; }
 html.vt .nav a[aria-current="page"] { view-transition-name: nav-actual; }
 html.vt .dock a[aria-current="page"] { view-transition-name: dock-actual; }
 ::view-transition-old(root) { animation: vt-sale 0.3s cubic-bezier(0.4, 0, 1, 1) both; }
@@ -797,3 +797,12 @@ select.idioma.idioma-oculto { display: none; }
 @media (max-width: 23rem) {
   .idioma-boton { padding-inline: 0.7rem 0.5rem; }
 }
+
+/* ---------- Panel de accesibilidad legible en los dos modos ----------
+   Es un panel de ayuda: prima que se lea, así que lleva un cristal casi opaco. */
+.acc-panel { background: rgba(255, 255, 255, 0.92); color: var(--tinta); }
+:root[data-tema="dark"] .acc-panel { background: rgba(30, 31, 35, 0.94); }
+.acc-tamanos button, .acc-opcion { background: color-mix(in srgb, var(--tinta) 5%, transparent); border-color: color-mix(in srgb, var(--tinta) 14%, transparent); color: var(--tinta); }
+.acc-tamanos button:hover, .acc-opcion:hover { border-color: color-mix(in srgb, var(--tinta) 45%, transparent); }
+.acc-tamanos button[aria-pressed="true"], .acc-opcion[aria-pressed="true"] { background: var(--tinta); border-color: var(--tinta); color: var(--fondo); }
+.acc-reset { color: var(--tinta); }
