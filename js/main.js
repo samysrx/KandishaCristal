@@ -147,28 +147,74 @@
     });
   }
 
-  /* ---------- Formulario: prepara un correo en el programa del visitante ---------- */
+  /* ---------- Formulario: envía el mensaje por correo ----------
+     Lo envía FormSubmit (formsubmit.co), que lo reenvía por correo a DESTINO. La primera vez que
+     se use con una dirección nueva, FormSubmit manda a esa dirección un correo de activación que
+     hay que confirmar; hasta entonces los mensajes no llegan. */
+  var DESTINO = 'bounousgroup@gmail.com';
   var form = document.getElementById('formulario');
   if (form) {
     var error = document.getElementById('form-error');
+    var estado = document.getElementById('form-estado');
+    var enviar = document.getElementById('form-enviar');
+    var enviando = false;
+
+    function avisar(clave, tipo) {
+      estado.textContent = texto(clave);
+      estado.className = 'form-estado' + (tipo ? ' ' + tipo : '');
+      estado.hidden = false;
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var nombre = form.nombre, mensaje = form.mensaje;
-      var faltan = [nombre, mensaje].filter(function (c) { return !c.value.trim(); });
-      [nombre, mensaje].forEach(function (c) {
-        if (c.value.trim()) c.removeAttribute('aria-invalid');
-        else c.setAttribute('aria-invalid', 'true');
+      if (enviando) return;
+      var nombre = form.nombre, mensaje = form.mensaje, email = form.email, tel = form.telefono;
+      var conContacto = email.value.trim() || tel.value.trim();
+      var emailMal = email.value.trim() && !email.checkValidity();
+      var malos = [nombre, mensaje].filter(function (c) { return !c.value.trim(); });
+      if (!conContacto || emailMal) malos.splice(1, 0, email);
+      [nombre, email, tel, mensaje].forEach(function (c) {
+        if (malos.indexOf(c) >= 0) c.setAttribute('aria-invalid', 'true');
+        else c.removeAttribute('aria-invalid');
       });
-      error.hidden = faltan.length === 0;
-      if (faltan.length) { faltan[0].focus(); return; }
+      error.hidden = malos.length === 0;
+      if (malos.length) { malos[0].focus(); return; }
 
       var marcado = form.querySelector('input[name="tipo"]:checked');
       var tipo = marcado ? marcado.parentNode.querySelector('[data-i18n]').textContent : '';
-      var asunto = (DIC[idioma]['form.subject'] || 'Proyecto') + ': ' + tipo;
-      var cuerpo = mensaje.value.trim() + '\n\n' + nombre.value.trim() +
-        (form.telefono.value.trim() ? '\n' + form.telefono.value.trim() : '');
-      window.location.href = 'mailto:' + CORREO +
-        '?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
+      var datos = {
+        _subject: (texto('form.subject') || 'Proyecto') + ': ' + tipo + ' — ' + nombre.value.trim(),
+        _template: 'table',
+        _captcha: 'false',
+        _honey: form._honey.value,
+        'Nombre': nombre.value.trim(),
+        'Correo': email.value.trim(),
+        'Teléfono': tel.value.trim(),
+        'Tipo de proyecto': tipo,
+        'Mensaje': mensaje.value.trim(),
+        'Idioma de la web': idioma.toUpperCase()
+      };
+      if (email.value.trim()) datos._replyto = email.value.trim();
+
+      enviando = true;
+      enviar.disabled = true;
+      avisar('form.sending');
+      fetch('https://formsubmit.co/ajax/' + DESTINO, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(datos)
+      }).then(function (r) {
+        return r.json().then(function (d) { return r.ok && String(d.success) === 'true'; });
+      }).then(function (bien) {
+        if (!bien) throw new Error('no enviado');
+        form.reset();
+        avisar('form.ok', 'bien');
+      }).catch(function () {
+        avisar('form.fail', 'mal');
+      }).then(function () {
+        enviando = false;
+        enviar.disabled = false;
+      });
     });
   }
 })();

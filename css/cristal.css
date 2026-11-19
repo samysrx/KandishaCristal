@@ -806,3 +806,12 @@ select.idioma.idioma-oculto { display: none; }
 .acc-tamanos button:hover, .acc-opcion:hover { border-color: color-mix(in srgb, var(--tinta) 45%, transparent); }
 .acc-tamanos button[aria-pressed="true"], .acc-opcion[aria-pressed="true"] { background: var(--tinta); border-color: var(--tinta); color: var(--fondo); }
 .acc-reset { color: var(--tinta); }
+
+/* ---------- Contacto: envío del formulario ---------- */
+
+.trampa { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.formulario { position: relative; }
+.formulario .boton:disabled { opacity: 0.6; cursor: progress; }
+.form-estado { margin: 0; padding: 0.75rem 1rem; border-radius: var(--radio-menor); font-weight: 600; background: color-mix(in srgb, var(--tinta) 6%, transparent); color: var(--tinta); }
+.form-estado.bien { background: color-mix(in srgb, #1f8a4c 14%, transparent); color: var(--tinta); border: 1px solid color-mix(in srgb, #1f8a4c 45%, transparent); }
+.form-estado.mal { background: color-mix(in srgb, var(--sello) 10%, transparent); color: var(--tinta); border: 1px solid color-mix(in srgb, var(--sello) 45%, transparent); }
