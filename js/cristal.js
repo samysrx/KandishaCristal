@@ -122,4 +122,19 @@
     document.addEventListener('kandisha:idioma', marcar);
     marcar();
   }
+
+  /* ---------- Fotos y vídeo más difíciles de guardar ----------
+     Sin menú del clic derecho ni arrastre sobre fotos y vídeo (en el resto de la página el menú
+     sigue normal). No impide una captura de pantalla: solo quita las formas fáciles de guardar. */
+  var MEDIOS = 'img, video, picture, .portada-cine, .obra-abrir';
+  document.addEventListener('contextmenu', function (e) {
+    if (e.target.closest && e.target.closest(MEDIOS)) e.preventDefault();
+  });
+  document.addEventListener('dragstart', function (e) {
+    if (e.target.closest && e.target.closest(MEDIOS)) e.preventDefault();
+  });
+  [].forEach.call(document.querySelectorAll('video'), function (v) {
+    v.disablePictureInPicture = true;
+    v.setAttribute('controlslist', 'nodownload noremoteplayback noplaybackrate');
+  });
 })();

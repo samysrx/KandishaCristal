@@ -806,3 +806,11 @@ select.idioma.idioma-oculto { display: none; }
 .acc-tamanos button:hover, .acc-opcion:hover { border-color: color-mix(in srgb, var(--tinta) 45%, transparent); }
 .acc-tamanos button[aria-pressed="true"], .acc-opcion[aria-pressed="true"] { background: var(--tinta); border-color: var(--tinta); color: var(--fondo); }
 .acc-reset { color: var(--tinta); }
+
+/* ---------- Fotos y vídeo: sin arrastre ni menú de «Guardar imagen» al mantener pulsado ---------- */
+img, video {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
