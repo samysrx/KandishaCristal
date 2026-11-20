@@ -39,28 +39,64 @@
   var DIC = { es: ES, fr: window.KANDISHA_FR || {}, ar: window.KANDISHA_AR || {} };
 
   var selector = document.getElementById('idioma');
+  var metaDesc = document.querySelector('meta[name="description"]');
+  var TITULO_ES = document.title, DESC_ES = metaDesc ? metaDesc.getAttribute('content') : '';
   var idioma = 'es';
 
   function texto(clave) { return DIC[idioma][clave] || ES[clave] || ''; }
 
-  function ponerIdioma(cual) {
+  function ponerIdioma(cual, guardar) {
     idioma = DIC[cual] ? cual : 'es';
     nodos.forEach(function (n) { n.textContent = texto(n.getAttribute('data-i18n')); });
     nodosAria.forEach(function (n) { n.setAttribute('aria-label', texto(n.getAttribute('data-i18n-aria'))); });
+    // Título de la pestaña y descripción en el idioma elegido
+    var pagina = document.body.getAttribute('data-pagina');
+    if (pagina) {
+      document.title = DIC[idioma]['meta.t.' + pagina] || TITULO_ES;
+      if (metaDesc) metaDesc.setAttribute('content', DIC[idioma]['meta.d.' + pagina] || DESC_ES);
+    }
     raiz.lang = idioma;
     raiz.dir = idioma === 'ar' ? 'rtl' : 'ltr';
     selector.value = idioma;
     document.dispatchEvent(new CustomEvent('kandisha:idioma'));
-    try { localStorage.setItem('kandisha-idioma', idioma); } catch (e) {}
+    // Solo se recuerda cuando lo elige el visitante; el idioma automático se recalcula en cada visita
+    if (guardar) { try { localStorage.setItem('kandisha-idioma', idioma); } catch (e) {} }
   }
 
-  selector.addEventListener('change', function () { ponerIdioma(selector.value); });
+  selector.addEventListener('change', function () { ponerIdioma(selector.value, true); });
 
   var guardado = null;
   try { guardado = localStorage.getItem('kandisha-idioma'); } catch (e) {}
-  var navegador = (navigator.language || '').slice(0, 2).toLowerCase();
-  var inicial = guardado || (DIC[navegador] ? navegador : 'es');
-  if (inicial !== 'es') ponerIdioma(inicial);
+  var inicial = guardado && DIC[guardado] ? guardado : idiomaSegunPais();
+  if (inicial !== 'es') ponerIdioma(inicial, false);
+
+  /* Idioma inicial según el país del visitante, deducido de la zona horaria de su dispositivo
+     (no se envía nada a ningún servicio ni se usa la IP). Si el visitante elige otro idioma con
+     el selector, esa elección manda en las visitas siguientes.
+       · España y Ceuta/Melilla → español
+       · Marruecos, Argelia y Túnez → francés, salvo que el navegador esté en árabe o en español
+       · Países árabes de Oriente Medio y Egipto → árabe
+       · Francia, Bélgica, Suiza, Canadá francófono, África francófona → francés
+       · Resto del mundo → el idioma del navegador si es uno de los tres; si no, español */
+  function idiomaSegunPais() {
+    var nav = (navigator.language || '').slice(0, 2).toLowerCase();
+    var zona = '';
+    try { zona = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    var MAGREB = ['Africa/Casablanca', 'Africa/El_Aaiun', 'Africa/Algiers', 'Africa/Tunis'];
+    var ESPANA = ['Europe/Madrid', 'Atlantic/Canary', 'Africa/Ceuta'];
+    var ARABE = ['Africa/Cairo', 'Africa/Tripoli', 'Africa/Khartoum', 'Asia/Riyadh', 'Asia/Dubai', 'Asia/Qatar',
+      'Asia/Kuwait', 'Asia/Bahrain', 'Asia/Muscat', 'Asia/Amman', 'Asia/Beirut', 'Asia/Damascus', 'Asia/Baghdad',
+      'Asia/Aden', 'Asia/Gaza', 'Asia/Hebron', 'Africa/Nouakchott'];
+    var FRANCES = ['Europe/Paris', 'Europe/Brussels', 'Europe/Luxembourg', 'Europe/Monaco', 'Europe/Zurich',
+      'America/Montreal', 'America/Toronto', 'Africa/Dakar', 'Africa/Abidjan', 'Africa/Bamako', 'Africa/Niamey',
+      'Africa/Ouagadougou', 'Africa/Douala', 'Africa/Libreville', 'Africa/Kinshasa', 'Africa/Brazzaville',
+      'Indian/Reunion', 'America/Martinique', 'America/Guadeloupe'];
+    if (ESPANA.indexOf(zona) >= 0) return 'es';
+    if (MAGREB.indexOf(zona) >= 0) return nav === 'ar' || nav === 'es' ? nav : 'fr';
+    if (ARABE.indexOf(zona) >= 0) return 'ar';
+    if (FRANCES.indexOf(zona) >= 0) return 'fr';
+    return DIC[nav] ? nav : 'es';
+  }
 
   /* ---------- Filtro de proyectos ---------- */
   var filtros = [].slice.call(document.querySelectorAll('.filtro'));
