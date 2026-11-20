@@ -1,0 +1,73 @@
+/* Prueba: botón flotante de WhatsApp, abajo a la derecha (a la izquierda en árabe).
+   Para quitarlo basta con retirar este archivo, js/whatsapp.js y el enlace .whatsapp de cada página. */
+
+.whatsapp {
+  position: fixed;
+  inset-block-end: 1rem;
+  inset-inline-end: 1rem;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 1.1rem 0.3rem 0.3rem;
+  border-radius: 999px;
+  color: var(--tinta);
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--cristal-fuerte);
+  border: 1px solid var(--cristal-borde);
+  box-shadow: var(--cristal-brillo), var(--cristal-sombra);
+  -webkit-backdrop-filter: var(--cristal-filtro);
+  backdrop-filter: var(--cristal-filtro);
+  transition: transform 0.25s cubic-bezier(0.3, 1.4, 0.5, 1), box-shadow 0.25s;
+}
+[dir="rtl"] .whatsapp { padding: 0.3rem 0.3rem 0.3rem 1.1rem; }
+.whatsapp-icono {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 3px 8px rgba(0, 0, 0, 0.18);
+}
+.whatsapp-icono svg { width: 1.45rem; height: 1.45rem; fill: currentColor; }
+.whatsapp:hover { transform: translateY(-3px); }
+.whatsapp:hover .whatsapp-icono { background: #1ebe5b; }
+.whatsapp:focus-visible { outline: 3px solid var(--acento); outline-offset: 3px; }
+
+/* Una onda suave alrededor del icono, que llama la atención sin molestar */
+.whatsapp-icono { position: relative; }
+html.mov .whatsapp-icono::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #25d366;
+  animation: whatsapp-onda 3.2s cubic-bezier(0.2, 0.7, 0.2, 1) 2s infinite;
+  pointer-events: none;
+}
+@keyframes whatsapp-onda {
+  0% { opacity: 0.7; transform: scale(1); }
+  45%, 100% { opacity: 0; transform: scale(1.7); }
+}
+
+/* Entrada: aparece poco después de cargar la página */
+html.mov .whatsapp { animation: whatsapp-entra 0.6s cubic-bezier(0.3, 1.4, 0.5, 1) 0.9s both; }
+@keyframes whatsapp-entra { from { opacity: 0; transform: translateY(1.5rem) scale(0.8); } }
+
+/* Mientras está el aviso de cookies, se aparta para no taparlo */
+.cookies:not([hidden]) ~ .whatsapp { display: none; }
+
+/* Alto contraste: sin cristal */
+.acc-contraste .whatsapp { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--superficie); border-color: var(--tinta); }
+
+/* En el móvil y la tableta: solo el icono, encima de la barra inferior */
+@media (max-width: 60rem) and (hover: none) and (pointer: coarse) {
+  .whatsapp { inset-block-end: calc(5.25rem + env(safe-area-inset-bottom)); padding: 0.25rem; }
+  [dir="rtl"] .whatsapp { padding: 0.25rem; }
+  .whatsapp-texto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .whatsapp-icono { width: 2.75rem; height: 2.75rem; }
+}
+@media print { .whatsapp { display: none; } }

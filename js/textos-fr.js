@@ -194,5 +194,7 @@ window.KANDISHA_FR = {
   "meta.d.contacto": "Appelez, écrivez ou passez chez Kandisha Pro'Art à Tanger (Imm. Côte d'Or, av. Youssef Ben Tachfine). Parlez-nous de votre projet.",
   "meta.t.privacidad": "Confidentialité et cookies — Kandisha Pro'Art",
   "meta.d.privacidad": "Quelles données le site de Kandisha Pro'Art conserve, à quoi elles servent et comment modifier vos préférences de cookies.",
-  "foot": "© 2026 Kandisha Pro'Art, Kamal Bounous. Tanger."
+  "foot": "© 2026 Kandisha Pro'Art, Kamal Bounous. Tanger.",
+  "wa.t": "WhatsApp",
+  "wa.aria": "Écrire au studio sur WhatsApp"
 };
