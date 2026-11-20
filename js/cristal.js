@@ -53,17 +53,27 @@
   var selector = document.getElementById('idioma');
   if (selector) {
     var IDIOMAS = [['es', 'Español', 'ES'], ['fr', 'Français', 'FR'], ['ar', 'العربية', 'عربي']];
+    // Banderas dibujadas (Windows no muestra los emojis de banderas): España, Francia y, para el
+    // árabe, Marruecos, el país del estudio
+    var BANDERAS = {
+      es: '<rect width="30" height="20" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/>',
+      fr: '<rect width="10" height="20" fill="#002654"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ed2939"/>',
+      ar: '<rect width="30" height="20" fill="#c1272d"/><path d="M15 4.4 18.29 14.53 9.67 8.27h10.66l-8.62 6.26z" fill="none" stroke="#006233" stroke-width="1.1" stroke-linejoin="round"/>'
+    };
+    function bandera(cual) {
+      return '<svg class="bandera" viewBox="0 0 30 20" aria-hidden="true">' + BANDERAS[cual] + '</svg>';
+    }
     var CHEVRON = '<svg class="idioma-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>';
     var CHECK = '<svg class="idioma-check" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
     var caja = document.createElement('div');
     caja.className = 'idioma-menu';
     caja.innerHTML =
       '<button type="button" class="idioma-boton" aria-haspopup="true" aria-expanded="false" aria-controls="idioma-lista" aria-label="' +
-      selector.getAttribute('aria-label') + '"><span class="idioma-actual"></span>' + CHEVRON + '</button>' +
+      selector.getAttribute('aria-label') + '"><span class="idioma-bandera"></span><span class="idioma-actual"></span>' + CHEVRON + '</button>' +
       '<ul class="idioma-lista" id="idioma-lista" role="menu" hidden>' +
       IDIOMAS.map(function (i) {
         return '<li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-valor="' + i[0] +
-          '" lang="' + i[0] + '"><span dir="auto">' + i[1] + '</span>' + CHECK + '</button></li>';
+          '" lang="' + i[0] + '">' + bandera(i[0]) + '<span class="idioma-nombre" dir="auto">' + i[1] + '</span>' + CHECK + '</button></li>';
       }).join('') + '</ul>';
     selector.parentNode.insertBefore(caja, selector.nextSibling);
     selector.classList.add('idioma-oculto');
@@ -76,7 +86,11 @@
 
     function marcar() {
       var v = selector.value;
-      IDIOMAS.forEach(function (i) { if (i[0] === v) caja.querySelector('.idioma-actual').textContent = i[2]; });
+      IDIOMAS.forEach(function (i) {
+        if (i[0] !== v) return;
+        caja.querySelector('.idioma-actual').textContent = i[2];
+        caja.querySelector('.idioma-bandera').innerHTML = bandera(i[0]);
+      });
       opciones.forEach(function (o) { o.setAttribute('aria-checked', String(o.getAttribute('data-valor') === v)); });
     }
     function abrir(foco) {

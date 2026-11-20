@@ -756,7 +756,7 @@ select.idioma.idioma-oculto { display: none; }
   list-style: none;
   border-radius: 20px;
   /* Dentro de la cabecera el desenfoque no alcanza a la página: el panel necesita más cuerpo */
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.97);
   -webkit-backdrop-filter: var(--cristal-filtro);
   backdrop-filter: var(--cristal-filtro);
   border: 1px solid var(--cristal-borde);
@@ -767,7 +767,7 @@ select.idioma.idioma-oculto { display: none; }
   transition: opacity 0.2s, transform 0.3s cubic-bezier(.3, 1.3, .5, 1);
 }
 [dir="rtl"] .idioma-lista { transform-origin: top left; }
-:root[data-tema="dark"] .idioma-lista { background: rgba(32, 33, 37, 0.92); }
+:root[data-tema="dark"] .idioma-lista { background: rgba(32, 33, 37, 0.97); }
 .idioma-menu.abierto .idioma-lista { opacity: 1; transform: none; }
 .idioma-lista button {
   display: flex;
@@ -814,3 +814,20 @@ img, video {
   -webkit-user-select: none;
   user-select: none;
 }
+
+/* ---------- Banderas en el menú de idioma ---------- */
+.bandera {
+  display: block;
+  flex: none;
+  width: 1.4rem;
+  height: 0.94rem;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14), 0 1px 3px rgba(0, 0, 0, 0.18);
+}
+:root[data-tema="dark"] .bandera { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18), 0 1px 3px rgba(0, 0, 0, 0.4); }
+.idioma-bandera { display: block; }
+.idioma-boton { gap: 0.45rem; padding-inline-start: 0.8rem; }
+[dir="rtl"] .idioma-boton { padding-inline-start: 0.8rem; }
+.idioma-lista button { justify-content: flex-start; gap: 0.75rem; }
+.idioma-nombre { flex: 1; }
