@@ -449,7 +449,9 @@ html.anim .carga-tarjeta { animation: tarjeta-entra 0.9s cubic-bezier(0.2, 0.7, 
 /* ---------- Barra de navegación inferior en el móvil ---------- */
 
 .dock { display: none; }
-@media (max-width: 60rem) {
+/* Solo en pantallas táctiles (móvil y tableta): en el ordenador, aunque se estreche la ventana,
+   se mantiene la cabecera con su menú en lugar de la barra inferior */
+@media (max-width: 60rem) and (hover: none) and (pointer: coarse) {
   .dock {
     position: fixed;
     z-index: 54;
@@ -831,3 +833,13 @@ img, video {
 [dir="rtl"] .idioma-boton { padding-inline-start: 0.8rem; }
 .idioma-lista button { justify-content: flex-start; gap: 0.75rem; }
 .idioma-nombre { flex: 1; }
+
+/* ---------- Menú desplegable de la cabecera (ordenador con ventana estrecha) ----------
+   Dentro de la cabecera de cristal el desenfoque no alcanza a la página: el panel lleva cuerpo
+   para que los enlaces no se mezclen con lo de detrás. */
+@media (max-width: 60rem) {
+  .nav { background: rgba(255, 255, 255, 0.97); }
+  :root[data-tema="dark"] .nav { background: rgba(32, 33, 37, 0.97); }
+  .nav a { font-size: 1.1rem; border-radius: 16px; }
+  .nav a:hover, .nav a[aria-current="page"] { background: color-mix(in srgb, var(--tinta) 7%, transparent); }
+}
