@@ -1,5 +1,6 @@
 (function () {
   var CORREO = 'kandisha.pro.art@gmail.com';
+  var WHATSAPP = '212655563663';
   var raiz = document.documentElement;
 
   /* ---------- Cabecera y menú móvil ---------- */
@@ -183,7 +184,7 @@
     });
   }
 
-  /* ---------- Formulario: prepara un correo en el programa del visitante ---------- */
+  /* ---------- Formulario: prepara el mensaje en WhatsApp o en el programa de correo del visitante ---------- */
   var form = document.getElementById('formulario');
   if (form) {
     var error = document.getElementById('form-error');
@@ -200,11 +201,21 @@
 
       var marcado = form.querySelector('input[name="tipo"]:checked');
       var tipo = marcado ? marcado.parentNode.querySelector('[data-i18n]').textContent : '';
-      var asunto = (DIC[idioma]['form.subject'] || 'Proyecto') + ': ' + tipo;
-      var cuerpo = mensaje.value.trim() + '\n\n' + nombre.value.trim() +
-        (form.telefono.value.trim() ? '\n' + form.telefono.value.trim() : '');
-      window.location.href = 'mailto:' + CORREO +
-        '?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
+      var proyecto = DIC[idioma]['form.subject'] || 'Proyecto';
+      var tel = form.telefono.value.trim();
+      var porCorreo = e.submitter && e.submitter.value === 'correo';
+      if (porCorreo) {
+        var cuerpo = mensaje.value.trim() + '\n\n' + nombre.value.trim() + (tel ? '\n' + tel : '');
+        window.location.href = 'mailto:' + CORREO +
+          '?subject=' + encodeURIComponent(proyecto + ': ' + tipo) + '&body=' + encodeURIComponent(cuerpo);
+        return;
+      }
+      var texto = (DIC[idioma]['form.hola'] || 'Hola, soy') + ' ' + nombre.value.trim() + '.\n' +
+        proyecto + ': ' + tipo + '\n\n' + mensaje.value.trim() +
+        (tel ? '\n\n' + (DIC[idioma]['form.tel'] || 'Teléfono') + ': ' + tel : '');
+      var url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto);
+      var ventana = window.open(url, '_blank');
+      if (ventana) ventana.opener = null; else window.location.href = url;
     });
   }
 })();

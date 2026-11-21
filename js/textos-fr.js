@@ -124,7 +124,7 @@ window.KANDISHA_FR = {
   "form.msg": "Décrivez-nous le projet",
   "form.error": "Indiquez votre nom et quelques lignes sur le projet.",
   "form.send": "Ouvrir l'e-mail avec mon message",
-  "form.note": "Votre messagerie s'ouvrira avec le message prêt à envoyer.",
+  "form.note": "WhatsApp s'ouvrira avec votre message prêt ; il ne reste qu'à appuyer sur envoyer. Si vous préférez, utilisez l'e-mail.",
   "proj.feat": "Projet à la une",
   "proj.feat.t": "Une maison, trois vues",
   "proj.feat.p": "Auvent en porte-à-faux, entrée en lames de bois et jardin devant. Le même projet modélisé en 3D depuis la façade, la rue et l'allée d'entrée.",
@@ -162,7 +162,7 @@ window.KANDISHA_FR = {
   "priv.1.t": "Qui est responsable",
   "priv.1.d": "Kandisha Pro'Art, studio de Kamal Bounous. Imm. Côte d'Or, n° 38, Tanger, Maroc. Pour toute question sur vos données : kandisha.pro.art@gmail.com.",
   "priv.2.t": "Les données que nous traitons",
-  "priv.2.d": "Ce site n'a ni comptes utilisateur ni base de données. Le formulaire de contact n'envoie rien à nos serveurs : il ouvre votre messagerie avec le message prêt, et c'est vous qui l'envoyez. Si vous nous écrivez ou nous appelez, nous n'utilisons vos données que pour vous répondre et préparer votre projet.",
+  "priv.2.d": "Ce site n'a ni comptes utilisateur ni base de données. Le formulaire de contact n'envoie rien à nos serveurs : il ouvre WhatsApp ou votre messagerie avec le message prêt, et c'est vous qui l'envoyez. Si vous choisissez WhatsApp, le message passe par ce service et relève de sa politique de confidentialité. Si vous nous écrivez ou nous appelez, nous n'utilisons vos données que pour vous répondre et préparer votre projet.",
   "priv.3.t": "Stockage nécessaire",
   "priv.3.d": "Nous enregistrons dans votre navigateur, sans vous identifier, la langue, le thème clair ou sombre, vos options d'accessibilité et votre choix concernant les cookies. Cela permet d'afficher le site tel que vous l'avez laissé, et rien n'est partagé avec des tiers.",
   "priv.4.t": "Statistiques de visites",
@@ -196,5 +196,8 @@ window.KANDISHA_FR = {
   "meta.d.privacidad": "Quelles données le site de Kandisha Pro'Art conserve, à quoi elles servent et comment modifier vos préférences de cookies.",
   "foot": "© 2026 Kandisha Pro'Art, Kamal Bounous. Tanger.",
   "wa.t": "WhatsApp",
-  "wa.aria": "Écrire au studio sur WhatsApp"
+  "wa.aria": "Écrire au studio sur WhatsApp",
+  "form.wa": "Envoyer sur WhatsApp",
+  "form.mail": "Envoyer par e-mail",
+  "form.hola": "Bonjour, je suis"
 };
