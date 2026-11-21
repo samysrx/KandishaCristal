@@ -881,3 +881,41 @@ img, video {
   .form-envios { display: grid; grid-template-columns: minmax(0, 1fr); }
   .boton-whatsapp { justify-content: center; }
 }
+
+/* ---------- Proyectos: la villa del vídeo, del 3D a la obra ---------- */
+.villa-obra { scroll-margin-top: calc(var(--cabecera-alto) + 1rem); }
+.villa-obra .destacado-fotos { gap: 1rem; }
+
+/* Inicio: etiqueta sobre el vídeo que lleva a las fotos de la obra */
+.portada-obra {
+  position: absolute;
+  inset-block-start: 1rem;
+  inset-inline-end: 1rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  background: rgba(20, 16, 14, 0.38);
+  -webkit-backdrop-filter: var(--cristal-filtro);
+  backdrop-filter: var(--cristal-filtro);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: background 0.2s;
+}
+.portada-obra::after { content: "→"; }
+[dir="rtl"] .portada-obra::after { content: "←"; }
+.portada-obra:hover { background: rgba(20, 16, 14, 0.55); }
+.portada-obra:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.portada-obra-punto { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #f2b134; flex: none; }
+html.mov .portada-obra-punto { animation: portada-obra-latido 2.4s ease-in-out infinite; }
+@keyframes portada-obra-latido { 50% { opacity: 0.35; } }
+.acc-contraste .portada-obra { -webkit-backdrop-filter: none; backdrop-filter: none; background: #000; border-color: #fff; }
+@media (max-width: 38rem) {
+  .portada-obra { inset-block-start: 0.6rem; inset-inline-end: 0.6rem; padding: 0.4rem 0.75rem; font-size: 0.85rem; }
+}

@@ -199,5 +199,17 @@ window.KANDISHA_FR = {
   "wa.aria": "Écrire au studio sur WhatsApp",
   "form.wa": "Envoyer sur WhatsApp",
   "form.mail": "Envoyer par e-mail",
-  "form.hola": "Bonjour, je suis"
+  "form.hola": "Bonjour, je suis",
+  "cat.3d": "Design 3D",
+  "cat.obra": "En chantier",
+  "vo.ante": "De la 3D au chantier",
+  "vo.t": "La villa de la vidéo, en construction",
+  "vo.p": "La villa qui ouvre ce site sort déjà de terre à Tanger. Les porte-à-faux en béton, les grandes ouvertures sur le jardin et l'escalier aux marches suspendues que l'on voit en 3D sont aujourd'hui en chantier, tels qu'ils ont été conçus.",
+  "vo.fachada": "Façade de la villa et ses porte-à-faux en béton",
+  "vo.esc3d": "L'escalier suspendu derrière la vitre, en 3D",
+  "vo.esc": "Le même escalier, déjà posé",
+  "vo.ter3d": "Terrasses et piscine sous les porte-à-faux, en 3D",
+  "vo.porche": "Le porche couvert qui s’ouvre sur le jardin",
+  "vo.salon": "Le salon du rez-de-chaussée avec sa cheminée en brique",
+  "vo.link": "Cette villa est déjà en chantier"
 };
