@@ -35,7 +35,7 @@
     ['.declaracion-texto, .estudio-texto > p, .datos > div, .estudio-texto > .enlace, .fila-titulo > .enlace, ' +
      '.llamada p, .llamada > div:last-child, .llamada > .boton, .principios > div, .pasos li, .servicio, ' +
      '.servicios-lista li, .contacto-lista > li, .formulario, .titulo-menor, .filtros, .pie-columnas > *, .pie-legal, ' +
-     '.destacado-texto, .servicio-bloque-texto, .servicio-carta, .contacto-intro > p, .contacto-intro > img, .proceso-intro', 'rev rev-sube'],
+     '.destacado-texto, .servicio-bloque-texto, .servicio-carta, .contacto-intro > p, .contacto-intro > img, .contacto-video, .proceso-intro', 'rev rev-sube'],
     ['.obra, .foto-ancha, .servicio-bloque-foto', 'rev rev-foto'],
     ['.sello', 'rev rev-sello']
   ];

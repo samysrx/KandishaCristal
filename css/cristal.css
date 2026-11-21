@@ -843,3 +843,31 @@ img, video {
   .nav a { font-size: 1.1rem; border-radius: 16px; }
   .nav a:hover, .nav a[aria-current="page"] { background: color-mix(in srgb, var(--tinta) 7%, transparent); }
 }
+
+/* ---------- Contacto: vídeo vertical en lugar de la foto ----------
+   En el ordenador ocupa la columna hasta el final del formulario; en el móvil, un recuadro 4:5. */
+.contacto-intro { display: flex; flex-direction: column; }
+.contacto-video {
+  position: relative;
+  flex: 1;
+  min-height: 26rem;
+  margin: 0.75rem 0 0;
+  border-radius: var(--radio);
+  overflow: hidden;
+  background: var(--cristal);
+  border: 1px solid var(--cristal-borde);
+  box-shadow: var(--cristal-brillo), var(--cristal-sombra);
+}
+.contacto-video img, .contacto-video .portada-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 100%;
+  border-radius: 0;
+  margin: 0;
+}
+@media (max-width: 60rem) {
+  .contacto-video { flex: none; min-height: 0; aspect-ratio: 4 / 5; border-radius: var(--radio-menor); }
+}

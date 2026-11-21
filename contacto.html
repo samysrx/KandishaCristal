@@ -123,7 +123,14 @@
     <div class="contacto-intro">
       <h2 data-i18n="hero.cta">Cuéntenos su proyecto</h2>
       <p data-i18n="con.form.p">Unas líneas bastan: qué espacio es, dónde está y qué le gustaría cambiar.</p>
-      <img loading="lazy" src="assets/proyectos/salon-abierto.jpg" width="960" height="450" alt="Salón diáfano con jardín vertical">
+      <figure class="contacto-video">
+        <img src="assets/video/contacto-poster.webp" width="604" height="1080" loading="lazy" alt="">
+        <video class="portada-video" muted loop playsinline preload="none" controlslist="nodownload noremoteplayback noplaybackrate" disablepictureinpicture disableremoteplayback poster="assets/video/contacto-poster.webp" data-src="assets/video/contacto.mp4" aria-hidden="true"></video>
+        <button type="button" class="portada-pausa" aria-pressed="false" data-i18n-aria="vid.pause" aria-label="Pausar el vídeo" hidden>
+          <svg class="icono-pausa" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>
+          <svg class="icono-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+        </button>
+      </figure>
     </div>
 
     <form class="formulario" id="formulario" novalidate>
@@ -282,6 +289,7 @@
 <script src="js/main.js" defer></script>
 <script src="js/cristal.js" defer></script>
 <script src="js/whatsapp.js" defer></script>
+<script src="js/portada-video.js" defer></script>
 <script src="js/zellige.js" defer></script>
 <script src="js/motion.js" defer></script>
 <script src="js/cookies.js" defer></script>
