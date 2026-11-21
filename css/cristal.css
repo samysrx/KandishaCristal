@@ -884,38 +884,97 @@ img, video {
 
 /* ---------- Proyectos: la villa del vídeo, del 3D a la obra ---------- */
 .villa-obra { scroll-margin-top: calc(var(--cabecera-alto) + 1rem); }
-.villa-obra .destacado-fotos { gap: 1rem; }
 
-/* Inicio: etiqueta sobre el vídeo que lleva a las fotos de la obra */
-.portada-obra {
+/* Portada: la fachada en obra a todo lo ancho, con el texto en una tarjeta de cristal encima */
+.vo-portada { position: relative; }
+.vo-portada .obra-abrir, .vo-portada img { border-radius: var(--radio); }
+.vo-portada img { width: 100%; height: auto; min-height: 22rem; object-fit: cover; display: block; }
+.vo-cabeza {
   position: absolute;
-  inset-block-start: 1rem;
-  inset-inline-end: 1rem;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.5rem 0.95rem;
-  border-radius: 999px;
-  color: #fff;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-decoration: none;
-  background: rgba(20, 16, 14, 0.38);
+  inset-block-end: clamp(1rem, 2.5vw, 2rem);
+  inset-inline-end: clamp(1rem, 2.5vw, 2rem);
+  max-width: 29rem;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  border-radius: var(--radio);
+  background: var(--cristal-fuerte);
+  border: 1px solid var(--cristal-borde);
+  box-shadow: var(--cristal-brillo), var(--cristal-sombra);
   -webkit-backdrop-filter: var(--cristal-filtro);
   backdrop-filter: var(--cristal-filtro);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 18px rgba(0, 0, 0, 0.25);
-  transition: background 0.2s;
 }
-.portada-obra::after { content: "→"; }
-[dir="rtl"] .portada-obra::after { content: "←"; }
-.portada-obra:hover { background: rgba(20, 16, 14, 0.55); }
-.portada-obra:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-.portada-obra-punto { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #f2b134; flex: none; }
-html.mov .portada-obra-punto { animation: portada-obra-latido 2.4s ease-in-out infinite; }
-@keyframes portada-obra-latido { 50% { opacity: 0.35; } }
-.acc-contraste .portada-obra { -webkit-backdrop-filter: none; backdrop-filter: none; background: #000; border-color: #fff; }
+/* Sobre una foto luminosa el cristal necesita más cuerpo para que el texto se lea */
+.vo-cabeza { background: rgba(255, 255, 255, 0.8); }
+:root[data-tema="dark"] .vo-cabeza { background: rgba(26, 28, 31, 0.8); }
+.acc-contraste .vo-cabeza { background: var(--superficie); }
+.vo-cabeza h2 { font-size: clamp(2rem, 3.6vw, 3.1rem); }
+.vo-cabeza h2 + p { margin-top: 0.9rem; color: var(--tinta-suave); }
+.vo-oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Comparativas: el 3D a un lado, la obra al otro y una flecha entre los dos */
+.vo-pares { list-style: none; margin: clamp(1.5rem, 3vw, 2.5rem) 0 0; padding: 0; display: grid; gap: clamp(1rem, 2vw, 1.5rem); }
+.vo-par {
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border-radius: var(--radio);
+  background: var(--cristal);
+  border: 1px solid var(--cristal-borde);
+  box-shadow: var(--cristal-brillo), var(--cristal-sombra);
+  -webkit-backdrop-filter: var(--cristal-filtro);
+  backdrop-filter: var(--cristal-filtro);
+}
+.vo-par h3 { display: flex; align-items: baseline; gap: 0.75rem; margin: 0 0 1rem; font-size: clamp(1.25rem, 2vw, 1.6rem); }
+.vo-num { font-family: "Big Shoulders Display", sans-serif; font-weight: 600; color: var(--acento); font-size: 1.15em; }
+.vo-fotos { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.vo-fotos .obra { position: relative; }
+.vo-fotos img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+.vo-etq {
+  position: absolute;
+  inset-block-start: 0.75rem;
+  inset-inline-start: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(20, 16, 14, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  -webkit-backdrop-filter: var(--cristal-filtro);
+  backdrop-filter: var(--cristal-filtro);
+  pointer-events: none;
+}
+.vo-etq-obra { background: #b3141a; border-color: transparent; }
+.vo-flecha {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-block-start: -1.375rem;
+  margin-inline-start: -1.375rem;
+  border-radius: 50%;
+  color: var(--tinta);
+  background: var(--cristal-fuerte);
+  border: 1px solid var(--cristal-borde);
+  box-shadow: var(--cristal-brillo), var(--cristal-sombra);
+  -webkit-backdrop-filter: var(--cristal-filtro);
+  backdrop-filter: var(--cristal-filtro);
+  pointer-events: none;
+}
+.vo-flecha svg { width: 1.2rem; height: 1.2rem; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+[dir="rtl"] .vo-flecha svg { transform: scaleX(-1); }
+.acc-contraste .vo-cabeza, .acc-contraste .vo-par, .acc-contraste .vo-flecha, .acc-contraste .vo-etq { -webkit-backdrop-filter: none; backdrop-filter: none; }
+.acc-contraste .vo-etq { background: #000; }
+
+@media (max-width: 60rem) {
+  .vo-portada img { min-height: 0; border-radius: var(--radio-menor); }
+  .vo-portada .obra-abrir { border-radius: var(--radio-menor); }
+  .vo-cabeza { position: relative; inset: auto; max-width: none; margin: -2.5rem 0.75rem 0; }
+}
 @media (max-width: 38rem) {
-  .portada-obra { inset-block-start: 0.6rem; inset-inline-end: 0.6rem; padding: 0.4rem 0.75rem; font-size: 0.85rem; }
+  .vo-fotos { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
+  .vo-flecha svg { transform: rotate(90deg); }
+  [dir="rtl"] .vo-flecha svg { transform: rotate(90deg); }
 }
+

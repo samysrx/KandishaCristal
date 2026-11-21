@@ -211,5 +211,8 @@ window.KANDISHA_FR = {
   "vo.ter3d": "Terrasses et piscine sous les porte-à-faux, en 3D",
   "vo.porche": "Le porche couvert qui s’ouvre sur le jardin",
   "vo.salon": "Le salon du rez-de-chaussée avec sa cheminée en brique",
-  "vo.link": "Cette villa est déjà en chantier"
+  "vo.par1": "L'escalier suspendu",
+  "vo.par2": "Le porche vers le jardin",
+  "vo.par3": "Le salon du rez-de-chaussée",
+  "vo.noche3d": "Le salon ouvert sur la piscine, de nuit, en 3D"
 };
