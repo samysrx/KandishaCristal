@@ -882,38 +882,15 @@ img, video {
   .boton-whatsapp { justify-content: center; }
 }
 
-/* ---------- Proyectos: la villa del vídeo, del 3D a la obra ---------- */
+/* ---------- Proyectos: la villa del vídeo, del 3D a la obra ----------
+   Un visor: arriba se elige «Diseño 3D» o «En obra», en el centro la foto grande y abajo las partes de la casa. */
 .villa-obra { scroll-margin-top: calc(var(--cabecera-alto) + 1rem); }
+.vo-cabeza { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 1rem clamp(2rem, 5vw, 4rem); align-items: end; margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+.vo-cabeza h2 { font-size: clamp(2.25rem, 4.6vw, 4rem); }
+.vo-cabeza > p { color: var(--tinta-suave); font-size: 1.08rem; max-width: 46ch; }
 
-/* Portada: la fachada en obra a todo lo ancho, con el texto en una tarjeta de cristal encima */
-.vo-portada { position: relative; }
-.vo-portada .obra-abrir, .vo-portada img { border-radius: var(--radio); }
-.vo-portada img { width: 100%; height: auto; min-height: 22rem; object-fit: cover; display: block; }
-.vo-cabeza {
-  position: absolute;
-  inset-block-end: clamp(1rem, 2.5vw, 2rem);
-  inset-inline-end: clamp(1rem, 2.5vw, 2rem);
-  max-width: 29rem;
-  padding: clamp(1.25rem, 2.5vw, 2rem);
-  border-radius: var(--radio);
-  background: var(--cristal-fuerte);
-  border: 1px solid var(--cristal-borde);
-  box-shadow: var(--cristal-brillo), var(--cristal-sombra);
-  -webkit-backdrop-filter: var(--cristal-filtro);
-  backdrop-filter: var(--cristal-filtro);
-}
-/* Sobre una foto luminosa el cristal necesita más cuerpo para que el texto se lea */
-.vo-cabeza { background: rgba(255, 255, 255, 0.8); }
-:root[data-tema="dark"] .vo-cabeza { background: rgba(26, 28, 31, 0.8); }
-.acc-contraste .vo-cabeza { background: var(--superficie); }
-.vo-cabeza h2 { font-size: clamp(2rem, 3.6vw, 3.1rem); }
-.vo-cabeza h2 + p { margin-top: 0.9rem; color: var(--tinta-suave); }
-.vo-oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-
-/* Comparativas: el 3D a un lado, la obra al otro y una flecha entre los dos */
-.vo-pares { list-style: none; margin: clamp(1.5rem, 3vw, 2.5rem) 0 0; padding: 0; display: grid; gap: clamp(1rem, 2vw, 1.5rem); }
-.vo-par {
-  padding: clamp(1rem, 2vw, 1.5rem);
+.vo-visor {
+  padding: clamp(0.75rem, 1.6vw, 1.25rem);
   border-radius: var(--radio);
   background: var(--cristal);
   border: 1px solid var(--cristal-borde);
@@ -921,60 +898,111 @@ img, video {
   -webkit-backdrop-filter: var(--cristal-filtro);
   backdrop-filter: var(--cristal-filtro);
 }
-.vo-par h3 { display: flex; align-items: baseline; gap: 0.75rem; margin: 0 0 1rem; font-size: clamp(1.25rem, 2vw, 1.6rem); }
-.vo-num { font-family: "Big Shoulders Display", sans-serif; font-weight: 600; color: var(--acento); font-size: 1.15em; }
-.vo-fotos { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-.vo-fotos .obra { position: relative; }
-.vo-fotos img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
-.vo-etq {
-  position: absolute;
-  inset-block-start: 0.75rem;
-  inset-inline-start: 0.75rem;
-  padding: 0.3rem 0.7rem;
+
+/* Interruptor «Diseño 3D / En obra» */
+.vo-fases {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.3rem;
+  margin-bottom: 0.9rem;
   border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #fff;
-  background: rgba(20, 16, 14, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  -webkit-backdrop-filter: var(--cristal-filtro);
-  backdrop-filter: var(--cristal-filtro);
-  pointer-events: none;
-}
-.vo-etq-obra { background: #b3141a; border-color: transparent; }
-.vo-flecha {
-  position: absolute;
-  inset-block-start: 50%;
-  inset-inline-start: 50%;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  margin-block-start: -1.375rem;
-  margin-inline-start: -1.375rem;
-  border-radius: 50%;
-  color: var(--tinta);
   background: var(--cristal-fuerte);
   border: 1px solid var(--cristal-borde);
-  box-shadow: var(--cristal-brillo), var(--cristal-sombra);
-  -webkit-backdrop-filter: var(--cristal-filtro);
-  backdrop-filter: var(--cristal-filtro);
-  pointer-events: none;
 }
-.vo-flecha svg { width: 1.2rem; height: 1.2rem; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-[dir="rtl"] .vo-flecha svg { transform: scaleX(-1); }
-.acc-contraste .vo-cabeza, .acc-contraste .vo-par, .acc-contraste .vo-flecha, .acc-contraste .vo-etq { -webkit-backdrop-filter: none; backdrop-filter: none; }
-.acc-contraste .vo-etq { background: #000; }
+.vo-fase {
+  min-height: 2.75rem;
+  padding: 0 1.4rem;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--tinta-suave);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+.vo-fase:hover { color: var(--tinta); }
+.vo-fase[aria-pressed="true"] { color: var(--superficie); background: var(--tinta); }
+.vo-fase[data-fase="obra"][aria-pressed="true"] { color: #fff; background: #b3141a; }
+.vo-fase:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
 
+/* Foto grande: el 3D y la obra están una encima de otra y se funden al cambiar */
+.vo-escena { display: grid; }
+.vo-escena[hidden] { display: none; }
+.vo-escena .obra { grid-area: 1 / 1; transition: opacity 0.45s ease, visibility 0.45s; }
+.vo-visor[data-fase="3d"] .vo-escena .vo-obra,
+.vo-visor[data-fase="obra"] .vo-escena .vo-3d { opacity: 0; visibility: hidden; }
+.vo-escena img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+/* El logo del estudio está abajo a la izquierda: el recorte se hace por el otro lado para que se vea entero */
+.vo-escena img, .vo-mini img { object-position: 0% 100%; }
+.vo-escena .obra-abrir { border-radius: var(--radio-menor); }
+.vo-escena figcaption { padding: 0.7rem 0.25rem 0; }
+
+/* Miniaturas de las partes de la casa: muestran la fase elegida */
+.vo-temas { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
+.vo-tema {
+  display: grid;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0.4rem 0.4rem 0.6rem;
+  border-radius: var(--radio-menor);
+  border: 1px solid transparent;
+  font: inherit;
+  text-align: start;
+  color: var(--tinta);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.vo-tema:hover { background: var(--cristal-fuerte); }
+.vo-tema[aria-pressed="true"] { background: var(--cristal-fuerte); border-color: var(--cristal-borde); }
+.vo-tema:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
+.vo-mini { display: grid; border-radius: 12px; overflow: hidden; }
+.vo-mini img { grid-area: 1 / 1; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; transition: opacity 0.45s ease; }
+.vo-visor[data-fase="3d"] .vo-mini .vo-obra, .vo-visor[data-fase="obra"] .vo-mini .vo-3d { opacity: 0; }
+.vo-tema:not([aria-pressed="true"]) .vo-mini img { filter: saturate(0.6) brightness(0.85); }
+.vo-tema-texto { display: flex; align-items: baseline; gap: 0.5rem; font-weight: 600; font-size: 0.95rem; line-height: 1.3; }
+.vo-num { font-family: "Big Shoulders Display", sans-serif; font-weight: 600; color: var(--acento); }
+
+.acc-contraste .vo-visor { -webkit-backdrop-filter: none; backdrop-filter: none; }
+@media (prefers-reduced-motion: reduce) {
+  .vo-escena .obra, .vo-mini img { transition: none; }
+}
+
+/* En pantallas anchas: la foto a la izquierda y las partes de la casa en columna a la derecha */
+@media (min-width: 60.01rem) {
+  .vo-visor { display: grid; grid-template-columns: minmax(0, 1fr) minmax(14rem, 17rem); grid-template-areas: "fases fases" "escenas temas"; column-gap: 1rem; align-items: start; }
+  .vo-fases { grid-area: fases; justify-self: start; }
+  .vo-escenas { grid-area: escenas; }
+  .vo-temas { grid-area: temas; grid-template-columns: minmax(0, 1fr); margin: 0; gap: 0.5rem; }
+  .vo-tema { grid-template-columns: 6.5rem minmax(0, 1fr); align-items: center; gap: 0.75rem; }
+  .vo-tema-texto { flex-direction: column; gap: 0.1rem; }
+  .vo-escena img { aspect-ratio: 16 / 10; }
+}
 @media (max-width: 60rem) {
-  .vo-portada img { min-height: 0; border-radius: var(--radio-menor); }
-  .vo-portada .obra-abrir { border-radius: var(--radio-menor); }
-  .vo-cabeza { position: relative; inset: auto; max-width: none; margin: -2.5rem 0.75rem 0; }
+  .vo-cabeza { grid-template-columns: minmax(0, 1fr); }
+  .vo-cabeza h2 { font-size: clamp(2rem, 8vw, 2.75rem); }
+  .vo-escena img { aspect-ratio: 3 / 2; }
 }
+/* En el móvil: interruptor a todo lo ancho y miniaturas en una tira que se desliza */
 @media (max-width: 38rem) {
-  .vo-fotos { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
-  .vo-flecha svg { transform: rotate(90deg); }
-  [dir="rtl"] .vo-flecha svg { transform: rotate(90deg); }
+  .vo-visor { padding: 0.6rem; border-radius: var(--radio-menor); }
+  .vo-fases { display: grid; width: 100%; }
+  .vo-fase { padding: 0 0.75rem; }
+  .vo-escena figcaption { font-size: 0.95rem; }
+  .vo-temas {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 44%;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-inline: -0.6rem;
+    padding-inline: 0.6rem;
+    scroll-padding-inline: 0.6rem;
+  }
+  .vo-temas::-webkit-scrollbar { display: none; }
+  .vo-temas li { scroll-snap-align: start; }
+  .vo-tema-texto { font-size: 0.88rem; }
 }
-

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="js/tema.js?v=20261123"></script>
-<script src="js/accesibilidad.js?v=20261123"></script>
+<script src="js/tema.js?v=20261124"></script>
+<script src="js/accesibilidad.js?v=20261124"></script>
 <title>Proyectos de interiorismo y arquitectura en Tánger — Kandisha Pro'Art</title>
 <meta name="description" content="Viviendas, villas, interiores y locales comerciales diseñados y modelados en 3D por Kandisha Pro'Art, estudio de Kamal Bounous en Tánger.">
 <link rel="canonical" href="https://samysrx.github.io/KandishaCristal/proyectos.html">
@@ -30,12 +30,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=Cabin:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Kufi+Arabic:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=20261123">
-<link rel="stylesheet" href="css/motion.css?v=20261123">
-<link rel="stylesheet" href="css/cristal.css?v=20261123">
-<link rel="stylesheet" href="css/fondo.css?v=20261123">
-<link rel="stylesheet" href="css/zellige.css?v=20261123">
-<link rel="stylesheet" href="css/whatsapp.css?v=20261123">
+<link rel="stylesheet" href="css/styles.css?v=20261124">
+<link rel="stylesheet" href="css/motion.css?v=20261124">
+<link rel="stylesheet" href="css/cristal.css?v=20261124">
+<link rel="stylesheet" href="css/fondo.css?v=20261124">
+<link rel="stylesheet" href="css/zellige.css?v=20261124">
+<link rel="stylesheet" href="css/whatsapp.css?v=20261124">
 <script>
 // Decide antes de pintar si hay animaciones y qué entrada toca: carga completa, transición
 // del navegador entre páginas (si la admite) o telón corto
@@ -122,67 +122,79 @@
   </section>
 
   <section class="seccion villa-obra" id="villa-obra">
-    <div class="vo-portada">
-      <figure class="obra" data-tipo="ext">
-        <button type="button" class="obra-abrir" data-i18n-aria="lb.open" aria-label="Ampliar la foto"><img loading="lazy" src="assets/proyectos/villa-obra-fachada.webp" width="1280" height="597" alt="Fachada de la villa con sus voladizos de hormigón"></button>
-        <figcaption class="vo-oculto"><span data-i18n="vo.fachada">Fachada de la villa con sus voladizos de hormigón</span></figcaption>
-      </figure>
-      <div class="vo-cabeza">
+    <div class="vo-cabeza">
+      <div>
         <p class="antetitulo" data-i18n="vo.ante">Del 3D a la obra</p>
         <h2 data-i18n="vo.t">La villa del vídeo, en construcción</h2>
-        <p data-i18n="vo.p">La villa que abre esta web ya se levanta en Tánger. Los voladizos de hormigón, los grandes huecos hacia el jardín y la escalera de peldaños volados que se ven en el 3D están hoy en obra, tal como se diseñaron.</p>
       </div>
+      <p data-i18n="vo.p">La villa que abre esta web ya se levanta en Tánger. Los voladizos de hormigón, los grandes huecos hacia el jardín y la escalera de peldaños volados que se ven en el 3D están hoy en obra, tal como se diseñaron.</p>
     </div>
-    <ol class="vo-pares">
-      <li class="vo-par">
-        <h3><span class="vo-num">01</span><span data-i18n="vo.par1">La escalera volada</span></h3>
-        <div class="vo-fotos">
-          <figure class="obra" data-tipo="ext">
+    <div class="vo-visor" data-fase="3d">
+      <div class="vo-fases" role="group" data-i18n-aria="vo.ver" aria-label="Ver la villa">
+        <button type="button" class="vo-fase" data-fase="3d" aria-pressed="true" data-i18n="cat.3d">Diseño 3D</button>
+        <button type="button" class="vo-fase" data-fase="obra" aria-pressed="false" data-i18n="cat.obra">En obra</button>
+      </div>
+      <div class="vo-escenas">
+        <div class="vo-escena" data-par="1">
+          <figure class="obra vo-3d" data-tipo="ext">
             <button type="button" class="obra-abrir" data-i18n-aria="lb.open" aria-label="Ampliar la foto"><img loading="lazy" src="assets/video/portada-poster.webp" width="1280" height="776" alt="La escalera volada tras el cristal, en el 3D"></button>
-            <small class="vo-etq" data-i18n="cat.3d">Diseño 3D</small>
-            <figcaption class="vo-oculto"><span data-i18n="vo.esc3d">La escalera volada tras el cristal, en el 3D</span></figcaption>
+            <figcaption><span data-i18n="vo.esc3d">La escalera volada tras el cristal, en el 3D</span></figcaption>
           </figure>
-          <span class="vo-flecha" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <figure class="obra" data-tipo="ext">
+          <figure class="obra vo-obra" data-tipo="ext">
             <button type="button" class="obra-abrir" data-i18n-aria="lb.open" aria-label="Ampliar la foto"><img loading="lazy" src="assets/proyectos/villa-obra-escalera.webp" width="1280" height="720" alt="La misma escalera, ya montada"></button>
-            <small class="vo-etq vo-etq-obra" data-i18n="cat.obra">En obra</small>
-            <figcaption class="vo-oculto"><span data-i18n="vo.esc">La misma escalera, ya montada</span></figcaption>
+            <figcaption><span data-i18n="vo.esc">La misma escalera, ya montada</span></figcaption>
           </figure>
         </div>
-      </li>
-      <li class="vo-par">
-        <h3><span class="vo-num">02</span><span data-i18n="vo.par2">El porche hacia el jardín</span></h3>
-        <div class="vo-fotos">
-          <figure class="obra" data-tipo="ext">
+        <div class="vo-escena" data-par="2" hidden>
+          <figure class="obra vo-3d" data-tipo="ext">
+            <button type="button" class="obra-abrir" data-i18n-aria="lb.open" aria-label="Ampliar la foto"><img loading="lazy" src="assets/proyectos/villa-3d-fachada.webp" width="1280" height="776" alt="La planta alta en voladizo sobre el jardín, en el 3D"></button>
+            <figcaption><span data-i18n="vo.fach3d">La planta alta en voladizo sobre el jardín, en el 3D</span></figcaption>
+          </figure>
+          <figure class="obra vo-obra" data-tipo="ext">
+            <button type="button" class="obra-abrir" data-i18n-aria="lb.open" aria-label="Ampliar la foto"><img loading="lazy" src="assets/proyectos/villa-obra-fachada.webp" width="1280" height="597" alt="Fachada de la villa con sus voladizos de hormigón"></button>
+            <figcaption><span data-i18n="vo.fachada">Fachada de la villa con sus voladizos de hormigón</span></figcaption>
+          </figure>
+        </div>
+        <div class="vo-escena" data-par="3" hidden>
+          <figure class="obra vo-3d" data-tipo="ext">
             <button type="button" class="obra-abrir" data-i18n-aria="lb.open" aria-label="Ampliar la foto"><img loading="lazy" src="assets/proyectos/villa-3d-terraza.webp" width="1280" height="776" alt="Terrazas y piscina bajo los voladizos, en el 3D"></button>
-            <small class="vo-etq" data-i18n="cat.3d">Diseño 3D</small>
-            <figcaption class="vo-oculto"><span data-i18n="vo.ter3d">Terrazas y piscina bajo los voladizos, en el 3D</span></figcaption>
+            <figcaption><span data-i18n="vo.ter3d">Terrazas y piscina bajo los voladizos, en el 3D</span></figcaption>
           </figure>
-          <span class="vo-flecha" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <figure class="obra" data-tipo="ext">
+          <figure class="obra vo-obra" data-tipo="ext">
             <button type="button" class="obra-abrir" data-i18n-aria="lb.open" aria-label="Ampliar la foto"><img loading="lazy" src="assets/proyectos/villa-obra-porche.webp" width="1280" height="720" alt="El porche cubierto que se abre al jardín"></button>
-            <small class="vo-etq vo-etq-obra" data-i18n="cat.obra">En obra</small>
-            <figcaption class="vo-oculto"><span data-i18n="vo.porche">El porche cubierto que se abre al jardín</span></figcaption>
+            <figcaption><span data-i18n="vo.porche">El porche cubierto que se abre al jardín</span></figcaption>
           </figure>
         </div>
-      </li>
-      <li class="vo-par">
-        <h3><span class="vo-num">03</span><span data-i18n="vo.par3">El salón de la planta baja</span></h3>
-        <div class="vo-fotos">
-          <figure class="obra" data-tipo="ext">
+        <div class="vo-escena" data-par="4" hidden>
+          <figure class="obra vo-3d" data-tipo="ext">
             <button type="button" class="obra-abrir" data-i18n-aria="lb.open" aria-label="Ampliar la foto"><img loading="lazy" src="assets/proyectos/villa-3d-noche.webp" width="1280" height="776" alt="El salón abierto a la piscina, de noche, en el 3D"></button>
-            <small class="vo-etq" data-i18n="cat.3d">Diseño 3D</small>
-            <figcaption class="vo-oculto"><span data-i18n="vo.noche3d">El salón abierto a la piscina, de noche, en el 3D</span></figcaption>
+            <figcaption><span data-i18n="vo.noche3d">El salón abierto a la piscina, de noche, en el 3D</span></figcaption>
           </figure>
-          <span class="vo-flecha" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          <figure class="obra" data-tipo="ext">
+          <figure class="obra vo-obra" data-tipo="ext">
             <button type="button" class="obra-abrir" data-i18n-aria="lb.open" aria-label="Ampliar la foto"><img loading="lazy" src="assets/proyectos/villa-obra-salon.webp" width="1280" height="720" alt="El salón de la planta baja con la chimenea en ladrillo"></button>
-            <small class="vo-etq vo-etq-obra" data-i18n="cat.obra">En obra</small>
-            <figcaption class="vo-oculto"><span data-i18n="vo.salon">El salón de la planta baja con la chimenea en ladrillo</span></figcaption>
+            <figcaption><span data-i18n="vo.salon">El salón de la planta baja con la chimenea en ladrillo</span></figcaption>
           </figure>
         </div>
-      </li>
-    </ol>
+      </div>
+      <ol class="vo-temas" data-i18n-aria="vo.partes" aria-label="Partes de la villa">
+      <li><button type="button" class="vo-tema" data-par="1" aria-pressed="true">
+        <span class="vo-mini" aria-hidden="true"><img class="vo-3d" loading="lazy" src="assets/video/portada-poster.webp" width="1280" height="776" alt=""><img class="vo-obra" loading="lazy" src="assets/proyectos/villa-obra-escalera.webp" width="1280" height="720" alt=""></span>
+        <span class="vo-tema-texto"><span class="vo-num">01</span><span data-i18n="vo.par1">La escalera volada</span></span>
+      </button></li>
+      <li><button type="button" class="vo-tema" data-par="2" aria-pressed="false">
+        <span class="vo-mini" aria-hidden="true"><img class="vo-3d" loading="lazy" src="assets/proyectos/villa-3d-fachada.webp" width="1280" height="776" alt=""><img class="vo-obra" loading="lazy" src="assets/proyectos/villa-obra-fachada.webp" width="1280" height="597" alt=""></span>
+        <span class="vo-tema-texto"><span class="vo-num">02</span><span data-i18n="vo.par4">Los voladizos de la fachada</span></span>
+      </button></li>
+      <li><button type="button" class="vo-tema" data-par="3" aria-pressed="false">
+        <span class="vo-mini" aria-hidden="true"><img class="vo-3d" loading="lazy" src="assets/proyectos/villa-3d-terraza.webp" width="1280" height="776" alt=""><img class="vo-obra" loading="lazy" src="assets/proyectos/villa-obra-porche.webp" width="1280" height="720" alt=""></span>
+        <span class="vo-tema-texto"><span class="vo-num">03</span><span data-i18n="vo.par2">El porche hacia el jardín</span></span>
+      </button></li>
+      <li><button type="button" class="vo-tema" data-par="4" aria-pressed="false">
+        <span class="vo-mini" aria-hidden="true"><img class="vo-3d" loading="lazy" src="assets/proyectos/villa-3d-noche.webp" width="1280" height="776" alt=""><img class="vo-obra" loading="lazy" src="assets/proyectos/villa-obra-salon.webp" width="1280" height="720" alt=""></span>
+        <span class="vo-tema-texto"><span class="vo-num">04</span><span data-i18n="vo.par3">El salón de la planta baja</span></span>
+      </button></li>
+      </ol>
+    </div>
   </section>
 
   <section class="seccion seccion-blanca">
@@ -413,14 +425,15 @@
   </div>
 </dialog>
 
-<script src="js/textos-fr.js?v=20261123" defer></script>
-<script src="js/textos-ar.js?v=20261123" defer></script>
-<script src="js/main.js?v=20261123" defer></script>
-<script src="js/cristal.js?v=20261123" defer></script>
-<script src="js/whatsapp.js?v=20261123" defer></script>
-<script src="js/zellige.js?v=20261123" defer></script>
-<script src="js/motion.js?v=20261123" defer></script>
-<script src="js/cookies.js?v=20261123" defer></script>
-<script src="js/analitica.js?v=20261123" defer></script>
+<script src="js/textos-fr.js?v=20261124" defer></script>
+<script src="js/textos-ar.js?v=20261124" defer></script>
+<script src="js/main.js?v=20261124" defer></script>
+<script src="js/cristal.js?v=20261124" defer></script>
+<script src="js/villa-obra.js?v=20261124" defer></script>
+<script src="js/whatsapp.js?v=20261124" defer></script>
+<script src="js/zellige.js?v=20261124" defer></script>
+<script src="js/motion.js?v=20261124" defer></script>
+<script src="js/cookies.js?v=20261124" defer></script>
+<script src="js/analitica.js?v=20261124" defer></script>
 </body>
 </html>

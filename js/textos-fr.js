@@ -214,5 +214,9 @@ window.KANDISHA_FR = {
   "vo.par1": "L'escalier suspendu",
   "vo.par2": "Le porche vers le jardin",
   "vo.par3": "Le salon du rez-de-chaussée",
-  "vo.noche3d": "Le salon ouvert sur la piscine, de nuit, en 3D"
+  "vo.noche3d": "Le salon ouvert sur la piscine, de nuit, en 3D",
+  "vo.par4": "Les porte-à-faux de la façade",
+  "vo.fach3d": "L'étage en porte-à-faux au-dessus du jardin, en 3D",
+  "vo.ver": "Voir la villa",
+  "vo.partes": "Parties de la villa"
 };
