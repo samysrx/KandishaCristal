@@ -1,0 +1,11 @@
+# Servidor de IONOS (Apache).
+# Una sola dirección oficial: https://www.kandisha-proart.com
+# Lo que llegue por http o sin «www» se envía ahí con una redirección permanente (301),
+# para que Google no vea la misma web repetida en cuatro direcciones.
+RewriteEngine On
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} !^www\.kandisha-proart\.com$ [NC]
+RewriteRule ^(.*)$ https://www.kandisha-proart.com/$1 [R=301,L]
+
+# Página propia para las direcciones que no existen
+ErrorDocument 404 /404.html
